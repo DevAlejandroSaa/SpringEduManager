@@ -21,10 +21,10 @@
 -- ===================================
 
 -- eliminar la base de datos si existe
-DROP DATABASE IF EXISTS AlkeWallet;
+DROP DATABASE IF EXISTS edu;
 
 -- crear la base de datos
-CREATE DATABASE AlkeWallet
+CREATE DATABASE edu
 DEFAULT CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
 
@@ -221,7 +221,7 @@ CREATE TABLE grade_rule (
 CREATE TABLE access_token (
     id CHAR(36) NOT NULL DEFAULT (UUID()) PRIMARY KEY,
     user_information_id CHAR(36) NOT NULL UNIQUE,
-    token VARCHAR(2048) NOT NULL UNIQUE,
+    token VARCHAR(512) NOT NULL UNIQUE,
     active BOOLEAN NOT NULL DEFAULT TRUE,
     expires_at TIMESTAMP NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -233,7 +233,7 @@ CREATE TABLE access_token (
 CREATE TABLE refresh_token (
     id CHAR(36) NOT NULL DEFAULT (UUID()) PRIMARY KEY,
     user_information_id CHAR(36) NOT NULL UNIQUE,
-    token VARCHAR(2048) NOT NULL UNIQUE,
+    token VARCHAR(512) NOT NULL UNIQUE,
     active BOOLEAN NOT NULL DEFAULT TRUE,
     expires_at TIMESTAMP NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

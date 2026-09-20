@@ -1,0 +1,78 @@
+# Java
+
+**/*.class
+**/hs_err_pid*
+**/replay_pid*
+**/core
+**/core.*
+
+# Maven
+
+**/target/
+**/.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ IDEA
+
+**/.idea/
+**/*.iml
+**/*.iws
+**/*.ipr
+**/out/
+
+# Eclipse
+
+**/.classpath
+**/.project
+**/.settings/
+**/.factorypath
+
+# VS Code
+
+**/.vscode/
+
+# Spring Boot
+
+**/spring-boot-starter.log
+
+# Docker
+
+**/.env
+**/.env.*
+!**/.env.example
+
+# Logs
+
+**/*.log
+
+# Temporary files
+
+**/*.tmp
+**/*.temp
+**/*.swp
+**/*.swo
+**/*~
+
+# Test reports
+
+**/surefire-reports/
+**/failsafe-reports/
+
+# Code coverage
+
+**/.jacoco/
+**/*.exec
+
+# Generated documentation
+
+**/apidocs/
+**/javadoc/
+
+# Build artifacts
+
+**/*.jar
+**/*.war
+
+# OS generated files
+
+**/.DS_Store
+**/Thumbs.db
