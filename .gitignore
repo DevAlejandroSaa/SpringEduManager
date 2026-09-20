@@ -1,78 +1,100 @@
-# Java
-
-**/*.class
-**/hs_err_pid*
-**/replay_pid*
-**/core
-**/core.*
-
-# Maven
-
+# =========================================================================
+# Compilados, ejecutables y empaquetados (NUNCA se suben)
+# =========================================================================
 **/target/
-**/.mvn/wrapper/maven-wrapper.jar
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.bz2
 
-# IntelliJ IDEA
+# =========================================================================
+# Logs, dumps y volcados de memoria
+# =========================================================================
+*.log
+log/
+logs/
+hs_err_pid*
+replay_pid*
 
-**/.idea/
-**/*.iml
-**/*.iws
-**/*.ipr
-**/out/
+# =========================================================================
+# Herramientas de build (Maven / Gradle)
+# =========================================================================
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/
+.gradle/
+build/
 
-# Eclipse
+# =========================================================================
+# Entorno, secretos y credenciales locales
+# =========================================================================
+*.env
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
 
-**/.classpath
-**/.project
-**/.settings/
-**/.factorypath
-
-# VS Code
-
+# =========================================================================
+# Configuración específica de IDEs y Editores
+# =========================================================================
+# Visual Studio Code
+.vscode/
 **/.vscode/
 
-# Spring Boot
+# IntelliJ IDEA
+.idea/
+**/.idea/
+*.iws
+*.iml
+*.ipr
+out/
 
-**/spring-boot-starter.log
+# Eclipse
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+**/.settings/
+.springBeans
+.sts4-cache/
 
-# Docker
+# NetBeans
+nbproject/private/
+nbproject/load-preferences.properties
 
-**/.env
-**/.env.*
-!**/.env.example
+# =========================================================================
+# Archivos temporales de Sistemas Operativos
+# =========================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
 
-# Logs
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-**/*.log
+# Linux
+*~
+*.swp
+*.swo
 
-# Temporary files
-
-**/*.tmp
-**/*.temp
-**/*.swp
-**/*.swo
-**/*~
-
-# Test reports
-
-**/surefire-reports/
-**/failsafe-reports/
-
-# Code coverage
-
-**/.jacoco/
-**/*.exec
-
-# Generated documentation
-
-**/apidocs/
-**/javadoc/
-
-# Build artifacts
-
-**/*.jar
-**/*.war
-
-# OS generated files
-
-**/.DS_Store
-**/Thumbs.db
+# =========================================================================
+# Archivos autogenerados y temporales
+# =========================================================================
+HELP.md
+**/HELP.md
