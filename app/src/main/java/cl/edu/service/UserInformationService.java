@@ -14,10 +14,10 @@ public interface UserInformationService {
     /**
      * Crea un usuario.
      *
-     * @param request datos del usuario
+     * @param userInformationRequest datos del usuario
      * @return usuario creado
      */
-    public UserInformationResponse create(UserInformationRequest request);
+    public UserInformationResponse create(UserInformationRequest userInformationRequest);
 
     /**
      * Filtra usuarios de forma paginada.
@@ -38,20 +38,20 @@ public interface UserInformationService {
     /**
      * Actualiza completamente un usuario.
      *
-     * @param id identificador del usuario
-     * @param request datos del usuario
+     * @param id                     identificador del usuario
+     * @param userInformationRequest datos del usuario
      * @return usuario actualizado
      */
-    public UserInformationResponse update(UUID id, UserInformationRequest request);
+    public UserInformationResponse update(UUID id, UserInformationRequest userInformationRequest);
 
     /**
      * Actualiza parcialmente un usuario.
      *
-     * @param id identificador del usuario
-     * @param request datos a actualizar
+     * @param id                           identificador del usuario
+     * @param userInformationFilterRequest datos a actualizar
      * @return usuario actualizado
      */
-    public UserInformationResponse patch(UUID id, UserInformationFilterRequest request);
+    public UserInformationResponse patch(UUID id, UserInformationFilterRequest userInformationFilterRequest);
 
     /**
      * Elimina un usuario.

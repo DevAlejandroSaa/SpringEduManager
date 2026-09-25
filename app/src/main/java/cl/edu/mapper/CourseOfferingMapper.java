@@ -17,7 +17,7 @@ public interface CourseOfferingMapper {
 
     @Mapping(target = "courseId", source = "course.id")
     @Mapping(target = "teacherUserId", source = "teacherUser.id")
-    CourseOfferingResponse toResponse(CourseOffering entity);
+    CourseOfferingResponse toResponse(CourseOffering courseOffering);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "course", ignore = true)
@@ -26,7 +26,7 @@ public interface CourseOfferingMapper {
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "userCourses", ignore = true)
     @Mapping(target = "courseClasses", ignore = true)
-    CourseOffering toEntity(CourseOfferingRequest request);
+    CourseOffering toEntity(CourseOfferingRequest courseOfferingRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
@@ -36,6 +36,9 @@ public interface CourseOfferingMapper {
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "userCourses", ignore = true)
     @Mapping(target = "courseClasses", ignore = true)
-    void updateEntityFromRequest(CourseOfferingFilterRequest request, @MappingTarget CourseOffering entity);
+    void updateEntityFromRequest(CourseOfferingRequest courseOfferingRequest,
+            @MappingTarget CourseOffering courseOffering);
+
+    CourseOfferingRequest toRequest(CourseOfferingFilterRequest courseOfferingFilterRequest);
 
 }

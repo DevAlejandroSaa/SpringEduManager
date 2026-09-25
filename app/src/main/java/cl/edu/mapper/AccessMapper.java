@@ -18,7 +18,7 @@ public interface AccessMapper {
     @Mapping(target = "roleId", source = "role.id")
     @Mapping(target = "userInformationId", source = "userInformation.id")
     @Mapping(target = "statusId", source = "status.id")
-    AccessResponse toResponse(Access entity);
+    AccessResponse toResponse(Access access);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "role", ignore = true)
@@ -26,7 +26,7 @@ public interface AccessMapper {
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    Access toEntity(AccessRequest request);
+    Access toEntity(AccessRequest accessRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
@@ -36,6 +36,9 @@ public interface AccessMapper {
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    void updateEntityFromRequest(AccessFilterRequest request, @MappingTarget Access entity);
-            
+    void updateEntityFromRequest(AccessRequest accessRequest, @MappingTarget Access access);
+
+    @Mapping(target = "password", ignore = true)
+    AccessRequest toRequest(AccessFilterRequest accessFilterRequest);
+
 }

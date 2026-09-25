@@ -14,10 +14,10 @@ public interface PracticeService {
     /**
      * Crea una práctica.
      *
-     * @param request datos de la práctica
+     * @param practiceRequest datos de la práctica
      * @return práctica creada
      */
-    public PracticeResponse create(PracticeRequest request);
+    public PracticeResponse create(PracticeRequest practiceRequest);
 
     /**
      * Filtra prácticas de forma paginada.
@@ -38,20 +38,20 @@ public interface PracticeService {
     /**
      * Actualiza completamente una práctica.
      *
-     * @param id identificador de la práctica
-     * @param request datos de la práctica
+     * @param id              identificador de la práctica
+     * @param practiceRequest datos de la práctica
      * @return práctica actualizada
      */
-    public PracticeResponse update(UUID id, PracticeRequest request);
+    public PracticeResponse update(UUID id, PracticeRequest practiceRequest);
 
     /**
      * Actualiza parcialmente una práctica.
      *
-     * @param id identificador de la práctica
-     * @param request datos a actualizar
+     * @param id                    identificador de la práctica
+     * @param practiceFilterRequest datos a actualizar
      * @return práctica actualizada
      */
-    public PracticeResponse patch(UUID id, PracticeFilterRequest request);
+    public PracticeResponse patch(UUID id, PracticeFilterRequest practiceFilterRequest);
 
     /**
      * Elimina una práctica.

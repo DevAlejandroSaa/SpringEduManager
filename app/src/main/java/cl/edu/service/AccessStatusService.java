@@ -14,10 +14,10 @@ public interface AccessStatusService {
     /**
      * Crea un estado de acceso.
      *
-     * @param request datos del estado
+     * @param accessStatusRequest datos del estado
      * @return estado creado
      */
-    public AccessStatusResponse create(AccessStatusRequest request);
+    public AccessStatusResponse create(AccessStatusRequest accessStatusRequest);
 
     /**
      * Filtra estados de acceso de forma paginada.
@@ -38,20 +38,20 @@ public interface AccessStatusService {
     /**
      * Actualiza completamente un estado de acceso.
      *
-     * @param id identificador del estado
-     * @param request datos del estado
+     * @param id                  identificador del estado
+     * @param accessStatusRequest datos del estado
      * @return estado actualizado
      */
-    public AccessStatusResponse update(UUID id, AccessStatusRequest request);
+    public AccessStatusResponse update(UUID id, AccessStatusRequest accessStatusRequest);
 
     /**
      * Actualiza parcialmente un estado de acceso.
      *
-     * @param id identificador del estado
-     * @param request datos a actualizar
+     * @param id                        identificador del estado
+     * @param accessStatusFilterRequest datos a actualizar
      * @return estado actualizado
      */
-    public AccessStatusResponse patch(UUID id, AccessStatusFilterRequest request);
+    public AccessStatusResponse patch(UUID id, AccessStatusFilterRequest accessStatusFilterRequest);
 
     /**
      * Elimina un estado de acceso.

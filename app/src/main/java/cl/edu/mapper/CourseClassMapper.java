@@ -16,19 +16,22 @@ import cl.edu.entity.CourseClass;
 public interface CourseClassMapper {
 
     @Mapping(target = "courseOfferingId", source = "courseOffering.id")
-    CourseClassResponse toResponse(CourseClass entity);
+    CourseClassResponse toResponse(CourseClass courseClass);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "courseOffering", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    CourseClass toEntity(CourseClassRequest request);
+    CourseClass toEntity(CourseClassRequest courseClassRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "courseOffering", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    void updateEntityFromRequest(CourseClassFilterRequest request, @MappingTarget CourseClass entity);
+    void updateEntityFromRequest(CourseClassFilterRequest courseClassFilterRequest,
+            @MappingTarget CourseClass courseClass);
+
+    CourseClassRequest toRequest(CourseClassFilterRequest courseClassFilterRequest);
 
 }

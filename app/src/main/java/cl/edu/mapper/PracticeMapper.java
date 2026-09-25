@@ -17,7 +17,7 @@ public interface PracticeMapper {
 
     @Mapping(target = "academicProgramId", source = "academicProgram.id")
     @Mapping(target = "statusId", source = "status.id")
-    PracticeResponse toResponse(Practice entity);
+    PracticeResponse toResponse(Practice practice);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "academicProgram", ignore = true)
@@ -25,7 +25,7 @@ public interface PracticeMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "userPractices", ignore = true)
-    Practice toEntity(PracticeRequest request);
+    Practice toEntity(PracticeRequest practiceRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
@@ -34,6 +34,8 @@ public interface PracticeMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "userPractices", ignore = true)
-    void updateEntityFromRequest(PracticeFilterRequest request, @MappingTarget Practice entity);
+    void updateEntityFromRequest(PracticeRequest practiceRequest, @MappingTarget Practice practice);
+
+    PracticeRequest toRequest(PracticeFilterRequest practiceFilterRequest);
 
 }

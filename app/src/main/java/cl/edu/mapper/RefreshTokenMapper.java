@@ -16,19 +16,21 @@ import cl.edu.entity.RefreshToken;
 public interface RefreshTokenMapper {
 
     @Mapping(target = "userInformationId", source = "userInformation.id")
-    RefreshTokenResponse toResponse(RefreshToken entity);
+    RefreshTokenResponse toResponse(RefreshToken refreshToken);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "userInformation", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    RefreshToken toEntity(RefreshTokenRequest request);
+    RefreshToken toEntity(RefreshTokenRequest refreshTokenRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "userInformation", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    void updateEntityFromRequest(RefreshTokenFilterRequest request, @MappingTarget RefreshToken entity);
+    void updateEntityFromRequest(RefreshTokenRequest refreshTokenRequest, @MappingTarget RefreshToken refreshToken);
+
+    RefreshTokenRequest toRequest(RefreshTokenFilterRequest refreshTokenFilterRequest);
 
 }

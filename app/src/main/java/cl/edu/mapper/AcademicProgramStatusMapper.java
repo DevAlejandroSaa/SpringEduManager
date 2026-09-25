@@ -15,19 +15,22 @@ import cl.edu.entity.AcademicProgramStatus;
 @Mapper(config = MapStructConfig.class)
 public interface AcademicProgramStatusMapper {
 
-    AcademicProgramStatusResponse toResponse(AcademicProgramStatus entity);
+    AcademicProgramStatusResponse toResponse(AcademicProgramStatus academicProgramStatus);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "academicPrograms", ignore = true)
-    AcademicProgramStatus toEntity(AcademicProgramStatusRequest request);
+    AcademicProgramStatus toEntity(AcademicProgramStatusRequest academicProgramStatusRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "academicPrograms", ignore = true)
-    void updateEntityFromRequest(AcademicProgramStatusFilterRequest request, @MappingTarget AcademicProgramStatus entity);
+    void updateEntityFromRequest(AcademicProgramStatusRequest academicProgramStatusRequest,
+            @MappingTarget AcademicProgramStatus academicProgramStatus);
+
+    AcademicProgramStatusRequest toRequest(AcademicProgramStatusFilterRequest academicProgramStatusFilterRequest);
 
 }

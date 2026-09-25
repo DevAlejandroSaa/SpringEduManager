@@ -14,10 +14,10 @@ public interface AcademicProgramStatusService {
     /**
      * Crea un estado de programa académico.
      *
-     * @param request datos del estado
+     * @param academicProgramStatusRequest datos del estado
      * @return estado creado
      */
-    public AcademicProgramStatusResponse create(AcademicProgramStatusRequest request);
+    public AcademicProgramStatusResponse create(AcademicProgramStatusRequest academicProgramStatusRequest);
 
     /**
      * Filtra estados de programa académico de forma paginada.
@@ -25,7 +25,8 @@ public interface AcademicProgramStatusService {
      * @param pageRequest datos del filtro y paginación
      * @return estados filtrados
      */
-    public PageResponse<AcademicProgramStatusResponse> filter(PageRequest<AcademicProgramStatusFilterRequest> pageRequest);
+    public PageResponse<AcademicProgramStatusResponse> filter(
+            PageRequest<AcademicProgramStatusFilterRequest> pageRequest);
 
     /**
      * Obtiene un estado de programa académico por su identificador.
@@ -38,20 +39,21 @@ public interface AcademicProgramStatusService {
     /**
      * Actualiza completamente un estado de programa académico.
      *
-     * @param id identificador del estado
-     * @param request datos del estado
+     * @param id                           identificador del estado
+     * @param academicProgramStatusRequest datos del estado
      * @return estado actualizado
      */
-    public AcademicProgramStatusResponse update(UUID id, AcademicProgramStatusRequest request);
+    public AcademicProgramStatusResponse update(UUID id, AcademicProgramStatusRequest academicProgramStatusRequest);
 
     /**
      * Actualiza parcialmente un estado de programa académico.
      *
-     * @param id identificador del estado
-     * @param request datos a actualizar
+     * @param id                                 identificador del estado
+     * @param academicProgramStatusFilterRequest datos a actualizar
      * @return estado actualizado
      */
-    public AcademicProgramStatusResponse patch(UUID id, AcademicProgramStatusFilterRequest request);
+    public AcademicProgramStatusResponse patch(UUID id,
+            AcademicProgramStatusFilterRequest academicProgramStatusFilterRequest);
 
     /**
      * Elimina un estado de programa académico.

@@ -14,10 +14,10 @@ public interface RefreshTokenService {
     /**
      * Crea un token de actualización.
      *
-     * @param request datos del token
+     * @param refreshTokenRequest datos del token
      * @return token creado
      */
-    public RefreshTokenResponse create(RefreshTokenRequest request);
+    public RefreshTokenResponse create(RefreshTokenRequest refreshTokenRequest);
 
     /**
      * Filtra tokens de actualización de forma paginada.
@@ -38,20 +38,20 @@ public interface RefreshTokenService {
     /**
      * Actualiza completamente un token de actualización.
      *
-     * @param id identificador del token
-     * @param request datos del token
+     * @param id                  identificador del token
+     * @param refreshTokenRequest datos del token
      * @return token actualizado
      */
-    public RefreshTokenResponse update(UUID id, RefreshTokenRequest request);
+    public RefreshTokenResponse update(UUID id, RefreshTokenRequest refreshTokenRequest);
 
     /**
      * Actualiza parcialmente un token de actualización.
      *
-     * @param id identificador del token
-     * @param request datos a actualizar
+     * @param id                        identificador del token
+     * @param refreshTokenFilterRequest datos a actualizar
      * @return token actualizado
      */
-    public RefreshTokenResponse patch(UUID id, RefreshTokenFilterRequest request);
+    public RefreshTokenResponse patch(UUID id, RefreshTokenFilterRequest refreshTokenFilterRequest);
 
     /**
      * Elimina un token de actualización.

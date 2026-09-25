@@ -15,18 +15,21 @@ import cl.edu.entity.Role;
 @Mapper(config = MapStructConfig.class)
 public interface RoleMapper {
 
-    RoleResponse toResponse(Role entity);
+    RoleResponse toResponse(Role role);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "accesses", ignore = true)
-    Role toEntity(RoleRequest request);
+    Role toEntity(RoleRequest roleRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "accesses", ignore = true)
-    void updateEntityFromRequest(RoleFilterRequest request, @MappingTarget Role entity);
+    void updateEntityFromRequest(RoleRequest roleRequest, @MappingTarget Role role);
+
+    RoleRequest toRequest(RoleFilterRequest roleFilterRequest);
+
 }

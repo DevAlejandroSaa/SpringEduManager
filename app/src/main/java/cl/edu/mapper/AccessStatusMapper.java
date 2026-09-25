@@ -15,19 +15,21 @@ import cl.edu.entity.AccessStatus;
 @Mapper(config = MapStructConfig.class)
 public interface AccessStatusMapper {
 
-    AccessStatusResponse toResponse(AccessStatus entity);
+    AccessStatusResponse toResponse(AccessStatus accessStatus);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "accesses", ignore = true)
-    AccessStatus toEntity(AccessStatusRequest request);
+    AccessStatus toEntity(AccessStatusRequest accessStatusRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "accesses", ignore = true)
-    void updateEntityFromRequest(AccessStatusFilterRequest request, @MappingTarget AccessStatus entity);
+    void updateEntityFromRequest(AccessStatusRequest accessStatusRequest, @MappingTarget AccessStatus accessStatus);
+
+    AccessStatusRequest toRequest(AccessStatusFilterRequest accessStatusFilterRequest);
 
 }

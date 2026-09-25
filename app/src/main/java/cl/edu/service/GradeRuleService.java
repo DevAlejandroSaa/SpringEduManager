@@ -14,10 +14,10 @@ public interface GradeRuleService {
     /**
      * Crea una regla de calificación.
      *
-     * @param request datos de la regla
+     * @param gradeRuleRequest datos de la regla
      * @return regla creada
      */
-    public GradeRuleResponse create(GradeRuleRequest request);
+    public GradeRuleResponse create(GradeRuleRequest gradeRuleRequest);
 
     /**
      * Filtra reglas de calificación de forma paginada.
@@ -38,20 +38,20 @@ public interface GradeRuleService {
     /**
      * Actualiza completamente una regla de calificación.
      *
-     * @param id identificador de la regla
-     * @param request datos de la regla
+     * @param id               identificador de la regla
+     * @param gradeRuleRequest datos de la regla
      * @return regla actualizada
      */
-    public GradeRuleResponse update(UUID id, GradeRuleRequest request);
+    public GradeRuleResponse update(UUID id, GradeRuleRequest gradeRuleRequest);
 
     /**
      * Actualiza parcialmente una regla de calificación.
      *
-     * @param id identificador de la regla
-     * @param request datos a actualizar
+     * @param id                     identificador de la regla
+     * @param gradeRuleFilterRequest datos a actualizar
      * @return regla actualizada
      */
-    public GradeRuleResponse patch(UUID id, GradeRuleFilterRequest request);
+    public GradeRuleResponse patch(UUID id, GradeRuleFilterRequest gradeRuleFilterRequest);
 
     /**
      * Elimina una regla de calificación.

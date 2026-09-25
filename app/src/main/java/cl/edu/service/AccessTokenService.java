@@ -14,10 +14,10 @@ public interface AccessTokenService {
     /**
      * Crea un token de acceso.
      *
-     * @param request datos del token
+     * @param accessTokenRequest datos del token
      * @return token creado
      */
-    public AccessTokenResponse create(AccessTokenRequest request);
+    public AccessTokenResponse create(AccessTokenRequest accessTokenRequest);
 
     /**
      * Filtra tokens de acceso de forma paginada.
@@ -38,20 +38,20 @@ public interface AccessTokenService {
     /**
      * Actualiza completamente un token de acceso.
      *
-     * @param id identificador del token
-     * @param request datos del token
+     * @param id                 identificador del token
+     * @param accessTokenRequest datos del token
      * @return token actualizado
      */
-    public AccessTokenResponse update(UUID id, AccessTokenRequest request);
+    public AccessTokenResponse update(UUID id, AccessTokenRequest accessTokenRequest);
 
     /**
      * Actualiza parcialmente un token de acceso.
      *
-     * @param id identificador del token
-     * @param request datos a actualizar
+     * @param id                       identificador del token
+     * @param accessTokenFilterRequest datos a actualizar
      * @return token actualizado
      */
-    public AccessTokenResponse patch(UUID id, AccessTokenFilterRequest request);
+    public AccessTokenResponse patch(UUID id, AccessTokenFilterRequest accessTokenFilterRequest);
 
     /**
      * Elimina un token de acceso.

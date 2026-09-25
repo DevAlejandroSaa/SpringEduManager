@@ -14,10 +14,10 @@ public interface UserCourseService {
     /**
      * Crea una inscripción de curso.
      *
-     * @param request datos de la inscripción
+     * @param userCourseRequest datos de la inscripción
      * @return inscripción creada
      */
-    public UserCourseResponse create(UserCourseRequest request);
+    public UserCourseResponse create(UserCourseRequest userCourseRequest);
 
     /**
      * Filtra inscripciones de curso de forma paginada.
@@ -38,20 +38,20 @@ public interface UserCourseService {
     /**
      * Actualiza completamente una inscripción de curso.
      *
-     * @param id identificador de la inscripción
-     * @param request datos de la inscripción
+     * @param id                identificador de la inscripción
+     * @param userCourseRequest datos de la inscripción
      * @return inscripción actualizada
      */
-    public UserCourseResponse update(UUID id, UserCourseRequest request);
+    public UserCourseResponse update(UUID id, UserCourseRequest userCourseRequest);
 
     /**
      * Actualiza parcialmente una inscripción de curso.
      *
-     * @param id identificador de la inscripción
-     * @param request datos a actualizar
+     * @param id                      identificador de la inscripción
+     * @param userCourseFilterRequest datos a actualizar
      * @return inscripción actualizada
      */
-    public UserCourseResponse patch(UUID id, UserCourseFilterRequest request);
+    public UserCourseResponse patch(UUID id, UserCourseFilterRequest userCourseFilterRequest);
 
     /**
      * Elimina una inscripción de curso.
