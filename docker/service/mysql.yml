@@ -1,0 +1,25 @@
+services:
+  # ─── MYSQL ───────────────────────────────
+  edu-mysql:
+    image: mysql:8
+    container_name: edu-mysql
+    restart: unless-stopped
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - "../database:docker-entrypoint-initdb.d:ro"
+      - "mysql:/var/lib/mysql"
+    networks:
+      net_interna:
+        aliases:
+          - net-edu-mysql
+
+volumes:
+  edu-mysql:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "./volumes/mysql/data"
