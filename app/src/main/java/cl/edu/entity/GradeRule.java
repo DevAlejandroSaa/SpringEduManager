@@ -13,23 +13,28 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
+@Table(name = "grade_rule")
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "grade_rule")
+@Builder
 public class GradeRule {
 
     @Id
     @GeneratedValue
     @UuidGenerator
+    @EqualsAndHashCode.Include
     @Column(name = "id", length = 36, nullable = false, updatable = false)
     private UUID id;
 

@@ -1,6 +1,8 @@
 package cl.edu.entity;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -14,8 +16,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,37 +27,38 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
+@Table(name = "course")
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "course")
+@Builder
 public class Course {
 
     @Id
     @GeneratedValue
     @UuidGenerator
+    @EqualsAndHashCode.Include
     @Column(name = "id", length = 36, nullable = false, updatable = false)
     private UUID id;
 
     @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "academic_program_id", nullable = false)
     private AcademicProgram academicProgram;
 
-    @Column(name = "code", length = 255, nullable = false, unique = true)
+    @Column(name = "code", length = 50, nullable = false, unique = true)
     private String code;
 
-    @Column(name = "name", length = 255, nullable = false)
+    @Column(name = "name", length = 150, nullable = false)
     private String name;
 
     @Column(name = "description", length = 255, nullable = false)
     private String description;
 
     @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status_id", nullable = false)
     private CourseStatus status;
@@ -65,5 +70,10 @@ public class Course {
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "course")
+    @Builder.Default
+    private Set<CourseOffering> courseOfferings = new HashSet<>();
 
 }

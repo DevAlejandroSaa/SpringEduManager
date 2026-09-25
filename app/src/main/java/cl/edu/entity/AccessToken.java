@@ -9,42 +9,48 @@ import org.hibernate.annotations.UuidGenerator;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
+@Table(name = "access_token")
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "access_token")
+@Builder
 public class AccessToken {
 
     @Id
     @GeneratedValue
     @UuidGenerator
+    @EqualsAndHashCode.Include
     @Column(name = "id", length = 36, nullable = false, updatable = false)
     private UUID id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_information_id", nullable = false, unique = true)
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "user_information_id", nullable = false)
     private UserInformation userInformation;
 
     @Column(name = "token", length = 512, nullable = false, unique = true)
     private String token;
 
     @Column(name = "active", nullable = false)
-    private boolean active;
+    @Builder.Default
+    private boolean active = true;
 
     @Column(name = "expires_at", nullable = false)
     private LocalDateTime expiresAt;

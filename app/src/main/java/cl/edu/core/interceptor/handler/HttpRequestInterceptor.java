@@ -1,18 +1,18 @@
 package cl.edu.core.interceptor.handler;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import cl.edu.core.interceptor.util.InterceptorLogUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 
 @Component
+@RequiredArgsConstructor
 public class HttpRequestInterceptor implements HandlerInterceptor {
 
-    @Autowired
-    private InterceptorLogUtil interceptorLogUtil;
+    private final InterceptorLogUtil interceptorLogUtil;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {

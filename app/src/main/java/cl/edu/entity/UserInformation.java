@@ -16,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,17 +24,20 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
+@Table(name = "user_information")
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user_information")
+@Builder
 public class UserInformation {
 
     @Id
     @GeneratedValue
     @UuidGenerator
+    @EqualsAndHashCode.Include
     @Column(name = "id", length = 36, nullable = false, updatable = false)
     private UUID id;
 
@@ -46,11 +50,6 @@ public class UserInformation {
     @Column(name = "email", length = 255, nullable = false, unique = true)
     private String email;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "userInformation")
-    private Set<UserAcademicProgram> academicPrograms = new HashSet<>();
-
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -58,5 +57,30 @@ public class UserInformation {
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "userInformation")
+    @Builder.Default
+    private Set<AccessToken> accessTokens = new HashSet<>();
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "userInformation")
+    @Builder.Default
+    private Set<RefreshToken> refreshTokens = new HashSet<>();
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "teacherUser")
+    @Builder.Default
+    private Set<CourseOffering> courseOfferings = new HashSet<>();
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "studentUser")
+    @Builder.Default
+    private Set<UserCourse> userCourses = new HashSet<>();
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "studentUser")
+    @Builder.Default
+    private Set<UserPractice> userPractices = new HashSet<>();
 
 }

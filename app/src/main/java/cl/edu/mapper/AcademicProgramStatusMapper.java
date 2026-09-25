@@ -13,16 +13,18 @@ import cl.edu.entity.AcademicProgramStatus;
 @Mapper(config = MapStructConfig.class)
 public interface AcademicProgramStatusMapper {
 
-    AcademicProgramStatusDto toDto(AcademicProgramStatus entity);
+    // AcademicProgramStatusDto toDto(AcademicProgramStatus entity);
 
-    @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
-    AcademicProgramStatus toEntity(AcademicProgramStatusDto dto);
+    // @Mapping(target = "createdAt", ignore = true)
+    // @Mapping(target = "updatedAt", ignore = true)
+    // AcademicProgramStatus toEntity(AcademicProgramStatusDto dto);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
-    void updateEntityFromDto(AcademicProgramStatusDto dto, @MappingTarget AcademicProgramStatus entity);
+    // @BeanMapping(nullValuePropertyMappingStrategy =
+    // NullValuePropertyMappingStrategy.IGNORE)
+    // @Mapping(target = "id", ignore = true)
+    // @Mapping(target = "createdAt", ignore = true)
+    // @Mapping(target = "updatedAt", ignore = true)
+    // void updateEntityFromDto(AcademicProgramStatusDto dto, @MappingTarget
+    // AcademicProgramStatus entity);
 
 }

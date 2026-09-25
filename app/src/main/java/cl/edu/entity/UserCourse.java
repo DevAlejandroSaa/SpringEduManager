@@ -1,19 +1,25 @@
 package cl.edu.entity;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.UuidGenerator;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,37 +27,32 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
+@Table(name = "user_course")
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user_academic_program")
-public class UserAcademicProgram {
+@Builder
+public class UserCourse {
 
-    @EmbeddedId
-    private UserAcademicProgramId id;
-
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("userInformationId")
-    @JoinColumn(name = "user_information_id", nullable = false)
-    private UserInformation userInformation;
+    @Id
+    @GeneratedValue
+    @UuidGenerator
+    @EqualsAndHashCode.Include
+    @Column(name = "id", length = 36, nullable = false, updatable = false)
+    private UUID id;
 
     @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("academicProgramId")
-    @JoinColumn(name = "academic_program_id", nullable = false)
-    private AcademicProgram academicProgram;
+    @JoinColumn(name = "student_user_id", nullable = false)
+    private UserInformation studentUser;
 
     @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "status_id", nullable = false)
-    private UserAcademicProgramStatus status;
+    @JoinColumn(name = "course_offering_id", nullable = false)
+    private CourseOffering courseOffering;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -60,5 +61,10 @@ public class UserAcademicProgram {
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "userCourse")
+    @Builder.Default
+    private Set<CourseEvaluation> courseEvaluations = new HashSet<>();
 
 }

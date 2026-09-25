@@ -45,26 +45,30 @@ public class AcademicProgramStatusServiceImpl implements AcademicProgramStatusSe
             throw new CustomConflictException(this.i18nConfig.getMessage("error.academic_program_status.name_exists"));
         }
 
-        AcademicProgramStatus academicProgramStatus = this.academicProgramStatusMapper
-                .toEntity(academicProgramStatusDto);
+        // AcademicProgramStatus academicProgramStatus =
+        // this.academicProgramStatusMapper.toEntity(academicProgramStatusDto);
 
-        academicProgramStatus = this.academicProgramStatusRepository.save(academicProgramStatus);
+        // academicProgramStatus =
+        // this.academicProgramStatusRepository.save(academicProgramStatus);
 
-        return this.academicProgramStatusMapper.toDto(academicProgramStatus);
+        // return this.academicProgramStatusMapper.toDto(academicProgramStatus);
+        return null;
     }
 
     @Override
     public AcademicProgramStatusDto findById(UUID id) {
-        return this.academicProgramStatusMapper.toDto(this.findEntityById(id));
+        // return this.academicProgramStatusMapper.toDto(this.findEntityById(id));
+        return null;
     }
 
     @Override
     public PageResponse<AcademicProgramStatusDto> findAllPaged(PageRequest<AcademicProgramStatusDto> pageRequest) {
-        return this.blazeHelper.findAllPaged(
-                AcademicProgramStatus.class,
-                pageRequest,
-                AcademicProgramStatusSpecification::apply,
-                this.academicProgramStatusMapper::toDto);
+        // return this.blazeHelper.findAllPaged(
+        // AcademicProgramStatus.class,
+        // pageRequest,
+        // AcademicProgramStatusSpecification::apply,
+        // this.academicProgramStatusMapper::toDto);
+        return null;
     }
 
     @Override
@@ -108,9 +112,12 @@ public class AcademicProgramStatusServiceImpl implements AcademicProgramStatusSe
             }
         }
 
-        this.academicProgramStatusMapper.updateEntityFromDto(dto, entity);
+        // this.academicProgramStatusMapper.updateEntityFromDto(dto, entity);
 
-        return this.academicProgramStatusMapper.toDto(this.academicProgramStatusRepository.save(entity));
+        // return
+        // this.academicProgramStatusMapper.toDto(this.academicProgramStatusRepository.save(entity));
+
+        return null;
     }
 
 }

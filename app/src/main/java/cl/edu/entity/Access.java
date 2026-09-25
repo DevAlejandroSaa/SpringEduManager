@@ -9,7 +9,6 @@ import org.hibernate.annotations.UuidGenerator;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -17,6 +16,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,21 +24,30 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
+@Table(name = "access")
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "access")
+@Builder
 public class Access {
 
     @Id
     @GeneratedValue
     @UuidGenerator
+    @EqualsAndHashCode.Include
     @Column(name = "id", length = 36, nullable = false, updatable = false)
     private UUID id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
+
+    @ToString.Exclude
+    @OneToOne
     @JoinColumn(name = "user_information_id", nullable = false, unique = true)
     private UserInformation userInformation;
 
@@ -49,8 +58,7 @@ public class Access {
     private String password;
 
     @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "status_id", nullable = false)
     private AccessStatus status;
 

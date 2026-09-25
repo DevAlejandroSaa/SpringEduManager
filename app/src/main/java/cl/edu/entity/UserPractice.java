@@ -1,5 +1,6 @@
 package cl.edu.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,7 +28,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "practice")
+@Table(name = "user_practice")
 @Getter
 @Setter
 @ToString
@@ -35,7 +36,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Practice {
+public class UserPractice {
 
     @Id
     @GeneratedValue
@@ -46,22 +47,31 @@ public class Practice {
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "academic_program_id", nullable = false)
-    private AcademicProgram academicProgram;
-
-    @Column(name = "code", length = 50, nullable = false, unique = true)
-    private String code;
-
-    @Column(name = "name", length = 150, nullable = false)
-    private String name;
-
-    @Column(name = "description", length = 255, nullable = false)
-    private String description;
+    @JoinColumn(name = "student_user_id", nullable = false)
+    private UserInformation studentUser;
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "status_id", nullable = false)
-    private PracticeStatus status;
+    @JoinColumn(name = "practice_id", nullable = false)
+    private Practice practice;
+
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
+
+    @Column(name = "end_date", nullable = false)
+    private LocalDate endDate;
+
+    @Column(name = "practice_location", length = 255, nullable = false)
+    private String practiceLocation;
+
+    @Column(name = "responsible_name", length = 200, nullable = false)
+    private String responsibleName;
+
+    @Column(name = "responsible_email", length = 255, nullable = false)
+    private String responsibleEmail;
+
+    @Column(name = "responsible_phone", length = 30, nullable = false)
+    private String responsiblePhone;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -72,8 +82,8 @@ public class Practice {
     private LocalDateTime updatedAt;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "practice")
+    @OneToMany(mappedBy = "userPractice")
     @Builder.Default
-    private Set<UserPractice> userPractices = new HashSet<>();
+    private Set<PracticeEvaluation> practiceEvaluations = new HashSet<>();
 
 }

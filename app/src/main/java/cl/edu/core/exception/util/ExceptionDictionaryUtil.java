@@ -11,8 +11,10 @@ import org.springframework.stereotype.Component;
 import cl.edu.core.exception.custom.CustomNotFoundException;
 import cl.edu.core.exception.dto.ErrorResponse;
 import cl.edu.core.i18n.I18nConfig;
+import lombok.RequiredArgsConstructor;
 
 @Component
+@RequiredArgsConstructor
 public class ExceptionDictionaryUtil {
 
     @Autowired
