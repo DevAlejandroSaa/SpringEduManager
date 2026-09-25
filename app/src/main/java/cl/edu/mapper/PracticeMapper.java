@@ -7,35 +7,33 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import cl.edu.core.mapStruct.MapStructConfig;
-import cl.edu.dto.filter.AccessFilterRequest;
-import cl.edu.dto.request.AccessRequest;
-import cl.edu.dto.response.AccessResponse;
-import cl.edu.entity.Access;
+import cl.edu.dto.filter.PracticeFilterRequest;
+import cl.edu.dto.request.PracticeRequest;
+import cl.edu.dto.response.PracticeResponse;
+import cl.edu.entity.Practice;
 
 @Mapper(config = MapStructConfig.class)
-public interface AccessMapper {
+public interface PracticeMapper {
 
-    @Mapping(target = "roleId", source = "role.id")
-    @Mapping(target = "userInformationId", source = "userInformation.id")
+    @Mapping(target = "academicProgramId", source = "academicProgram.id")
     @Mapping(target = "statusId", source = "status.id")
-    AccessResponse toResponse(Access entity);
+    PracticeResponse toResponse(Practice entity);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "role", ignore = true)
-    @Mapping(target = "userInformation", ignore = true)
+    @Mapping(target = "academicProgram", ignore = true)
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    Access toEntity(AccessRequest request);
+    @Mapping(target = "userPractices", ignore = true)
+    Practice toEntity(PracticeRequest request);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "role", ignore = true)
-    @Mapping(target = "userInformation", ignore = true)
-    @Mapping(target = "password", ignore = true)
+    @Mapping(target = "academicProgram", ignore = true)
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    void updateEntityFromRequest(AccessFilterRequest request, @MappingTarget Access entity);
-            
+    @Mapping(target = "userPractices", ignore = true)
+    void updateEntityFromRequest(PracticeFilterRequest request, @MappingTarget Practice entity);
+
 }

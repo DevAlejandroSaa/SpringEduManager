@@ -7,35 +7,28 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import cl.edu.core.mapStruct.MapStructConfig;
-import cl.edu.dto.filter.AccessFilterRequest;
-import cl.edu.dto.request.AccessRequest;
-import cl.edu.dto.response.AccessResponse;
-import cl.edu.entity.Access;
+import cl.edu.dto.filter.AccessTokenFilterRequest;
+import cl.edu.dto.request.AccessTokenRequest;
+import cl.edu.dto.response.AccessTokenResponse;
+import cl.edu.entity.AccessToken;
 
 @Mapper(config = MapStructConfig.class)
-public interface AccessMapper {
+public interface AccessTokenMapper {
 
-    @Mapping(target = "roleId", source = "role.id")
     @Mapping(target = "userInformationId", source = "userInformation.id")
-    @Mapping(target = "statusId", source = "status.id")
-    AccessResponse toResponse(Access entity);
+    AccessTokenResponse toResponse(AccessToken entity);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "role", ignore = true)
     @Mapping(target = "userInformation", ignore = true)
-    @Mapping(target = "status", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    Access toEntity(AccessRequest request);
+    AccessToken toEntity(AccessTokenRequest request);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "role", ignore = true)
     @Mapping(target = "userInformation", ignore = true)
-    @Mapping(target = "password", ignore = true)
-    @Mapping(target = "status", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    void updateEntityFromRequest(AccessFilterRequest request, @MappingTarget Access entity);
-            
+    void updateEntityFromRequest(AccessTokenFilterRequest request, @MappingTarget AccessToken entity);
+
 }
