@@ -11,14 +11,6 @@ import lombok.experimental.UtilityClass;
 public class AcademicProgramStatusSpecification {
 
     public void apply(CriteriaBuilder<AcademicProgramStatus> criteriaBuilder, AcademicProgramStatusDto filter) {
-        if (filter == null) {
-            return;
-        }
-
-        if (filter.id() != null) {
-            criteriaBuilder.where("id").eq(filter.id());
-        }
-
         criteriaBuilder = BlazeSpecificationHelper.applyLike(criteriaBuilder, "code", filter.code());
         criteriaBuilder = BlazeSpecificationHelper.applyLike(criteriaBuilder, "name", filter.name());
         criteriaBuilder = BlazeSpecificationHelper.applyLike(criteriaBuilder, "description", filter.description());
