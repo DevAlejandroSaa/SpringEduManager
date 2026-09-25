@@ -14,10 +14,10 @@ public interface UserPracticeService {
     /**
      * Crea una práctica de estudiante.
      *
-     * @param request datos de la práctica
+     * @param userPracticeRequest datos de la práctica
      * @return práctica creada
      */
-    public UserPracticeResponse create(UserPracticeRequest request);
+    public UserPracticeResponse create(UserPracticeRequest userPracticeRequest);
 
     /**
      * Filtra prácticas de estudiantes de forma paginada.
@@ -38,20 +38,20 @@ public interface UserPracticeService {
     /**
      * Actualiza completamente una práctica de estudiante.
      *
-     * @param id identificador de la práctica
-     * @param request datos de la práctica
+     * @param id                  identificador de la práctica
+     * @param userPracticeRequest datos de la práctica
      * @return práctica actualizada
      */
-    public UserPracticeResponse update(UUID id, UserPracticeRequest request);
+    public UserPracticeResponse update(UUID id, UserPracticeRequest userPracticeRequest);
 
     /**
      * Actualiza parcialmente una práctica de estudiante.
      *
-     * @param id identificador de la práctica
-     * @param request datos a actualizar
+     * @param id                        identificador de la práctica
+     * @param userPracticeFilterRequest datos a actualizar
      * @return práctica actualizada
      */
-    public UserPracticeResponse patch(UUID id, UserPracticeFilterRequest request);
+    public UserPracticeResponse patch(UUID id, UserPracticeFilterRequest userPracticeFilterRequest);
 
     /**
      * Elimina una práctica de estudiante.

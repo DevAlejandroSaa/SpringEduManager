@@ -30,7 +30,8 @@ public class AcademicProgramStatusController {
     @ResponseStatus(HttpStatus.OK)
     public PageResponse<AcademicProgramStatusDto> findAllPaged(
             @Valid @RequestBody PageRequest<AcademicProgramStatusDto> pageRequest) {
-        return this.academicProgramStatusService.findAllPaged(pageRequest);
+        // return this.academicProgramStatusService.findAllPaged(pageRequest);
+        return null;
     }
 
 }

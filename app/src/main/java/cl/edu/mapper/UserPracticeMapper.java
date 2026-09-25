@@ -17,7 +17,7 @@ public interface UserPracticeMapper {
 
     @Mapping(target = "studentUserId", source = "studentUser.id")
     @Mapping(target = "practiceId", source = "practice.id")
-    UserPracticeResponse toResponse(UserPractice entity);
+    UserPracticeResponse toResponse(UserPractice userPractice);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "studentUser", ignore = true)
@@ -25,7 +25,7 @@ public interface UserPracticeMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "practiceEvaluations", ignore = true)
-    UserPractice toEntity(UserPracticeRequest request);
+    UserPractice toEntity(UserPracticeRequest userPracticeRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
@@ -34,6 +34,8 @@ public interface UserPracticeMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "practiceEvaluations", ignore = true)
-    void updateEntityFromRequest(UserPracticeFilterRequest request, @MappingTarget UserPractice entity);
+    void updateEntityFromRequest(UserPracticeRequest userPracticeRequest, @MappingTarget UserPractice userPractice);
+
+    UserPracticeRequest toRequest(UserPracticeFilterRequest userPracticeFilterRequest);
 
 }

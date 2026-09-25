@@ -16,19 +16,22 @@ import cl.edu.entity.CourseEvaluation;
 public interface CourseEvaluationMapper {
 
     @Mapping(target = "userCourseId", source = "userCourse.id")
-    CourseEvaluationResponse toResponse(CourseEvaluation entity);
+    CourseEvaluationResponse toResponse(CourseEvaluation courseEvaluation);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "userCourse", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    CourseEvaluation toEntity(CourseEvaluationRequest request);
+    CourseEvaluation toEntity(CourseEvaluationRequest courseEvaluationRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "userCourse", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    void updateEntityFromRequest(CourseEvaluationFilterRequest request, @MappingTarget CourseEvaluation entity);
+    void updateEntityFromRequest(CourseEvaluationRequest courseEvaluationRequest,
+            @MappingTarget CourseEvaluation courseEvaluation);
+
+    CourseEvaluationRequest toRequest(CourseEvaluationFilterRequest courseEvaluationFilterRequest);
 
 }

@@ -14,10 +14,10 @@ public interface PracticeStatusService {
     /**
      * Crea un estado de práctica.
      *
-     * @param request datos del estado
+     * @param practiceStatusRequest datos del estado
      * @return estado creado
      */
-    public PracticeStatusResponse create(PracticeStatusRequest request);
+    public PracticeStatusResponse create(PracticeStatusRequest practiceStatusRequest);
 
     /**
      * Filtra estados de práctica de forma paginada.
@@ -38,20 +38,20 @@ public interface PracticeStatusService {
     /**
      * Actualiza completamente un estado de práctica.
      *
-     * @param id identificador del estado
-     * @param request datos del estado
+     * @param id                    identificador del estado
+     * @param practiceStatusRequest datos del estado
      * @return estado actualizado
      */
-    public PracticeStatusResponse update(UUID id, PracticeStatusRequest request);
+    public PracticeStatusResponse update(UUID id, PracticeStatusRequest practiceStatusRequest);
 
     /**
      * Actualiza parcialmente un estado de práctica.
      *
-     * @param id identificador del estado
-     * @param request datos a actualizar
+     * @param id                          identificador del estado
+     * @param practiceStatusFilterRequest datos a actualizar
      * @return estado actualizado
      */
-    public PracticeStatusResponse patch(UUID id, PracticeStatusFilterRequest request);
+    public PracticeStatusResponse patch(UUID id, PracticeStatusFilterRequest practiceStatusFilterRequest);
 
     /**
      * Elimina un estado de práctica.

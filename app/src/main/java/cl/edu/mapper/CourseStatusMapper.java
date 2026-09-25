@@ -15,19 +15,21 @@ import cl.edu.entity.CourseStatus;
 @Mapper(config = MapStructConfig.class)
 public interface CourseStatusMapper {
 
-    CourseStatusResponse toResponse(CourseStatus entity);
+    CourseStatusResponse toResponse(CourseStatus courseStatus);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "courses", ignore = true)
-    CourseStatus toEntity(CourseStatusRequest request);
+    CourseStatus toEntity(CourseStatusRequest courseStatusRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "courses", ignore = true)
-    void updateEntityFromRequest(CourseStatusFilterRequest request, @MappingTarget CourseStatus entity);
+    void updateEntityFromRequest(CourseStatusRequest courseStatusRequest, @MappingTarget CourseStatus courseStatus);
+
+    CourseStatusRequest toRequest(CourseStatusFilterRequest courseStatusFilterRequest);
 
 }

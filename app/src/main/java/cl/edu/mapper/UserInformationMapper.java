@@ -15,7 +15,7 @@ import cl.edu.entity.UserInformation;
 @Mapper(config = MapStructConfig.class)
 public interface UserInformationMapper {
 
-    UserInformationResponse toResponse(UserInformation entity);
+    UserInformationResponse toResponse(UserInformation userInformation);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
@@ -25,7 +25,7 @@ public interface UserInformationMapper {
     @Mapping(target = "courseOfferings", ignore = true)
     @Mapping(target = "userCourses", ignore = true)
     @Mapping(target = "userPractices", ignore = true)
-    UserInformation toEntity(UserInformationRequest request);
+    UserInformation toEntity(UserInformationRequest userInformationRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
@@ -36,6 +36,9 @@ public interface UserInformationMapper {
     @Mapping(target = "courseOfferings", ignore = true)
     @Mapping(target = "userCourses", ignore = true)
     @Mapping(target = "userPractices", ignore = true)
-    void updateEntityFromRequest(UserInformationFilterRequest request, @MappingTarget UserInformation entity);
+    void updateEntityFromRequest(UserInformationRequest userInformationRequest,
+            @MappingTarget UserInformation userInformation);
+
+    UserInformationRequest toRequest(UserInformationFilterRequest userInformationFilterRequest);
 
 }

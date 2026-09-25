@@ -14,10 +14,10 @@ public interface AccessService {
     /**
      * Crea un acceso.
      *
-     * @param request datos del acceso
+     * @param accessRequest datos del acceso
      * @return acceso creado
      */
-    public AccessResponse create(AccessRequest request);
+    public AccessResponse create(AccessRequest accessRequest);
 
     /**
      * Filtra accesos de forma paginada.
@@ -38,20 +38,20 @@ public interface AccessService {
     /**
      * Actualiza completamente un acceso.
      *
-     * @param id identificador del acceso
-     * @param request datos del acceso
+     * @param id            identificador del acceso
+     * @param accessRequest datos del acceso
      * @return acceso actualizado
      */
-    public AccessResponse update(UUID id, AccessRequest request);
+    public AccessResponse update(UUID id, AccessRequest accessRequest);
 
     /**
      * Actualiza parcialmente un acceso.
      *
-     * @param id identificador del acceso
-     * @param request datos a actualizar
+     * @param id                  identificador del acceso
+     * @param accessFilterRequest datos a actualizar
      * @return acceso actualizado
      */
-    public AccessResponse patch(UUID id, AccessFilterRequest request);
+    public AccessResponse patch(UUID id, AccessFilterRequest accessFilterRequest);
 
     /**
      * Elimina un acceso.

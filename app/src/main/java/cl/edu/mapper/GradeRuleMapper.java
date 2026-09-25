@@ -15,17 +15,19 @@ import cl.edu.entity.GradeRule;
 @Mapper(config = MapStructConfig.class)
 public interface GradeRuleMapper {
 
-    GradeRuleResponse toResponse(GradeRule entity);
+    GradeRuleResponse toResponse(GradeRule gradeRule);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    GradeRule toEntity(GradeRuleRequest request);
+    GradeRule toEntity(GradeRuleRequest gradeRuleRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    void updateEntityFromRequest(GradeRuleFilterRequest request, @MappingTarget GradeRule entity);
+    void updateEntityFromRequest(GradeRuleRequest gradeRuleRequest, @MappingTarget GradeRule gradeRule);
+
+    GradeRuleRequest toRequest(GradeRuleFilterRequest gradeRuleFilterRequest);
 
 }

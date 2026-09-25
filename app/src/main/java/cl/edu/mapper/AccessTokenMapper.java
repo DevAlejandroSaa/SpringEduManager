@@ -16,19 +16,21 @@ import cl.edu.entity.AccessToken;
 public interface AccessTokenMapper {
 
     @Mapping(target = "userInformationId", source = "userInformation.id")
-    AccessTokenResponse toResponse(AccessToken entity);
+    AccessTokenResponse toResponse(AccessToken accessToken);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "userInformation", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    AccessToken toEntity(AccessTokenRequest request);
+    AccessToken toEntity(AccessTokenRequest accessTokenRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "userInformation", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    void updateEntityFromRequest(AccessTokenFilterRequest request, @MappingTarget AccessToken entity);
+    void updateEntityFromRequest(AccessTokenRequest accessTokenRequest, @MappingTarget AccessToken accessToken);
+
+    AccessTokenRequest toRequest(AccessTokenFilterRequest accessTokenFilterRequest);
 
 }

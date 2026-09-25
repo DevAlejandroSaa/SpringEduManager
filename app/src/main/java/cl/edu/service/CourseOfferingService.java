@@ -14,10 +14,10 @@ public interface CourseOfferingService {
     /**
      * Crea una oferta de curso.
      *
-     * @param request datos de la oferta
+     * @param courseOfferingRequest datos de la oferta
      * @return oferta creada
      */
-    public CourseOfferingResponse create(CourseOfferingRequest request);
+    public CourseOfferingResponse create(CourseOfferingRequest courseOfferingRequest);
 
     /**
      * Filtra ofertas de curso de forma paginada.
@@ -38,20 +38,20 @@ public interface CourseOfferingService {
     /**
      * Actualiza completamente una oferta de curso.
      *
-     * @param id identificador de la oferta
-     * @param request datos de la oferta
+     * @param id                    identificador de la oferta
+     * @param courseOfferingRequest datos de la oferta
      * @return oferta actualizada
      */
-    public CourseOfferingResponse update(UUID id, CourseOfferingRequest request);
+    public CourseOfferingResponse update(UUID id, CourseOfferingRequest courseOfferingRequest);
 
     /**
      * Actualiza parcialmente una oferta de curso.
      *
-     * @param id identificador de la oferta
-     * @param request datos a actualizar
+     * @param id                          identificador de la oferta
+     * @param courseOfferingFilterRequest datos a actualizar
      * @return oferta actualizada
      */
-    public CourseOfferingResponse patch(UUID id, CourseOfferingFilterRequest request);
+    public CourseOfferingResponse patch(UUID id, CourseOfferingFilterRequest courseOfferingFilterRequest);
 
     /**
      * Elimina una oferta de curso.

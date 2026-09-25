@@ -14,10 +14,10 @@ public interface CourseStatusService {
     /**
      * Crea un estado de curso.
      *
-     * @param request datos del estado
+     * @param courseStatusRequest datos del estado
      * @return estado creado
      */
-    public CourseStatusResponse create(CourseStatusRequest request);
+    public CourseStatusResponse create(CourseStatusRequest courseStatusRequest);
 
     /**
      * Filtra estados de curso de forma paginada.
@@ -38,20 +38,20 @@ public interface CourseStatusService {
     /**
      * Actualiza completamente un estado de curso.
      *
-     * @param id identificador del estado
-     * @param request datos del estado
+     * @param id                  identificador del estado
+     * @param courseStatusRequest datos del estado
      * @return estado actualizado
      */
-    public CourseStatusResponse update(UUID id, CourseStatusRequest request);
+    public CourseStatusResponse update(UUID id, CourseStatusRequest courseStatusRequest);
 
     /**
      * Actualiza parcialmente un estado de curso.
      *
-     * @param id identificador del estado
-     * @param request datos a actualizar
+     * @param id                        identificador del estado
+     * @param courseStatusFilterRequest datos a actualizar
      * @return estado actualizado
      */
-    public CourseStatusResponse patch(UUID id, CourseStatusFilterRequest request);
+    public CourseStatusResponse patch(UUID id, CourseStatusFilterRequest courseStatusFilterRequest);
 
     /**
      * Elimina un estado de curso.

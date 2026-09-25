@@ -14,10 +14,10 @@ public interface CourseClassService {
     /**
      * Crea una clase de curso.
      *
-     * @param request datos de la clase
+     * @param courseClassRequest datos de la clase
      * @return clase creada
      */
-    public CourseClassResponse create(CourseClassRequest request);
+    public CourseClassResponse create(CourseClassRequest courseClassRequest);
 
     /**
      * Filtra clases de curso de forma paginada.
@@ -38,20 +38,20 @@ public interface CourseClassService {
     /**
      * Actualiza completamente una clase de curso.
      *
-     * @param id identificador de la clase
-     * @param request datos de la clase
+     * @param id                 identificador de la clase
+     * @param courseClassRequest datos de la clase
      * @return clase actualizada
      */
-    public CourseClassResponse update(UUID id, CourseClassRequest request);
+    public CourseClassResponse update(UUID id, CourseClassRequest courseClassRequest);
 
     /**
      * Actualiza parcialmente una clase de curso.
      *
-     * @param id identificador de la clase
-     * @param request datos a actualizar
+     * @param id                       identificador de la clase
+     * @param courseClassFilterRequest datos a actualizar
      * @return clase actualizada
      */
-    public CourseClassResponse patch(UUID id, CourseClassFilterRequest request);
+    public CourseClassResponse patch(UUID id, CourseClassFilterRequest courseClassFilterRequest);
 
     /**
      * Elimina una clase de curso.

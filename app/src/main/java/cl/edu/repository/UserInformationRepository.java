@@ -8,4 +8,7 @@ import cl.edu.entity.UserInformation;
 
 public interface UserInformationRepository extends JpaRepository<UserInformation, UUID> {
 
+    boolean existsByEmail(String email);
+
+    boolean existsByEmailAndIdNot(String email, UUID id);
 }

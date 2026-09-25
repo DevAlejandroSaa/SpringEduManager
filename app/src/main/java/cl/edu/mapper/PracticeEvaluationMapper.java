@@ -16,19 +16,22 @@ import cl.edu.entity.PracticeEvaluation;
 public interface PracticeEvaluationMapper {
 
     @Mapping(target = "userPracticeId", source = "userPractice.id")
-    PracticeEvaluationResponse toResponse(PracticeEvaluation entity);
+    PracticeEvaluationResponse toResponse(PracticeEvaluation practiceEvaluation);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "userPractice", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    PracticeEvaluation toEntity(PracticeEvaluationRequest request);
+    PracticeEvaluation toEntity(PracticeEvaluationRequest practiceEvaluationRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "userPractice", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    void updateEntityFromRequest(PracticeEvaluationFilterRequest request, @MappingTarget PracticeEvaluation entity);
+    void updateEntityFromRequest(PracticeEvaluationRequest practiceEvaluationRequest,
+            @MappingTarget PracticeEvaluation practiceEvaluation);
+
+    PracticeEvaluationRequest toRequest(PracticeEvaluationFilterRequest evaluationFilterRequest);
 
 }

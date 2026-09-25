@@ -15,19 +15,22 @@ import cl.edu.entity.PracticeStatus;
 @Mapper(config = MapStructConfig.class)
 public interface PracticeStatusMapper {
 
-    PracticeStatusResponse toResponse(PracticeStatus entity);
+    PracticeStatusResponse toResponse(PracticeStatus practiceStatus);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "practices", ignore = true)
-    PracticeStatus toEntity(PracticeStatusRequest request);
+    PracticeStatus toEntity(PracticeStatusRequest practiceStatusRequest);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "practices", ignore = true)
-    void updateEntityFromRequest(PracticeStatusFilterRequest request, @MappingTarget PracticeStatus entity);
+    void updateEntityFromRequest(PracticeStatusRequest practiceStatusRequest,
+            @MappingTarget PracticeStatus practiceStatus);
+
+    PracticeStatusRequest toRequest(PracticeStatusFilterRequest practiceStatusFilterRequest);
 
 }

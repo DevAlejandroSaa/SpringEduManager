@@ -14,10 +14,10 @@ public interface PracticeEvaluationService {
     /**
      * Crea una evaluación de práctica.
      *
-     * @param request datos de la evaluación
+     * @param practiceEvaluationRequest datos de la evaluación
      * @return evaluación creada
      */
-    public PracticeEvaluationResponse create(PracticeEvaluationRequest request);
+    public PracticeEvaluationResponse create(PracticeEvaluationRequest practiceEvaluationRequest);
 
     /**
      * Filtra evaluaciones de práctica de forma paginada.
@@ -38,20 +38,20 @@ public interface PracticeEvaluationService {
     /**
      * Actualiza completamente una evaluación de práctica.
      *
-     * @param id identificador de la evaluación
-     * @param request datos de la evaluación
+     * @param id                        identificador de la evaluación
+     * @param practiceEvaluationRequest datos de la evaluación
      * @return evaluación actualizada
      */
-    public PracticeEvaluationResponse update(UUID id, PracticeEvaluationRequest request);
+    public PracticeEvaluationResponse update(UUID id, PracticeEvaluationRequest practiceEvaluationRequest);
 
     /**
      * Actualiza parcialmente una evaluación de práctica.
      *
-     * @param id identificador de la evaluación
-     * @param request datos a actualizar
+     * @param id                              identificador de la evaluación
+     * @param practiceEvaluationFilterRequest datos a actualizar
      * @return evaluación actualizada
      */
-    public PracticeEvaluationResponse patch(UUID id, PracticeEvaluationFilterRequest request);
+    public PracticeEvaluationResponse patch(UUID id, PracticeEvaluationFilterRequest practiceEvaluationFilterRequest);
 
     /**
      * Elimina una evaluación de práctica.

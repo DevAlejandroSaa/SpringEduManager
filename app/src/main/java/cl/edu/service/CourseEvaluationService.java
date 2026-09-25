@@ -14,10 +14,10 @@ public interface CourseEvaluationService {
     /**
      * Crea una evaluación de curso.
      *
-     * @param request datos de la evaluación
+     * @param courseEvaluationRequest datos de la evaluación
      * @return evaluación creada
      */
-    public CourseEvaluationResponse create(CourseEvaluationRequest request);
+    public CourseEvaluationResponse create(CourseEvaluationRequest courseEvaluationRequest);
 
     /**
      * Filtra evaluaciones de curso de forma paginada.
@@ -38,20 +38,20 @@ public interface CourseEvaluationService {
     /**
      * Actualiza completamente una evaluación de curso.
      *
-     * @param id identificador de la evaluación
-     * @param request datos de la evaluación
+     * @param id                      identificador de la evaluación
+     * @param courseEvaluationRequest datos de la evaluación
      * @return evaluación actualizada
      */
-    public CourseEvaluationResponse update(UUID id, CourseEvaluationRequest request);
+    public CourseEvaluationResponse update(UUID id, CourseEvaluationRequest courseEvaluationRequest);
 
     /**
      * Actualiza parcialmente una evaluación de curso.
      *
-     * @param id identificador de la evaluación
-     * @param request datos a actualizar
+     * @param id                            identificador de la evaluación
+     * @param courseEvaluationFilterRequest datos a actualizar
      * @return evaluación actualizada
      */
-    public CourseEvaluationResponse patch(UUID id, CourseEvaluationFilterRequest request);
+    public CourseEvaluationResponse patch(UUID id, CourseEvaluationFilterRequest courseEvaluationFilterRequest);
 
     /**
      * Elimina una evaluación de curso.

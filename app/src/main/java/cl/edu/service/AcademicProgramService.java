@@ -14,10 +14,10 @@ public interface AcademicProgramService {
     /**
      * Crea un programa académico.
      *
-     * @param request datos del programa
+     * @param academicProgramRequest datos del programa
      * @return programa creado
      */
-    public AcademicProgramResponse create(AcademicProgramRequest request);
+    public AcademicProgramResponse create(AcademicProgramRequest academicProgramRequest);
 
     /**
      * Filtra programas académicos de forma paginada.
@@ -38,20 +38,20 @@ public interface AcademicProgramService {
     /**
      * Actualiza completamente un programa académico.
      *
-     * @param id identificador del programa
-     * @param request datos del programa
+     * @param id                     identificador del programa
+     * @param academicProgramRequest datos del programa
      * @return programa actualizado
      */
-    public AcademicProgramResponse update(UUID id, AcademicProgramRequest request);
+    public AcademicProgramResponse update(UUID id, AcademicProgramRequest academicProgramRequest);
 
     /**
      * Actualiza parcialmente un programa académico.
      *
-     * @param id identificador del programa
-     * @param request datos a actualizar
+     * @param id                           identificador del programa
+     * @param academicProgramFilterRequest datos a actualizar
      * @return programa actualizado
      */
-    public AcademicProgramResponse patch(UUID id, AcademicProgramFilterRequest request);
+    public AcademicProgramResponse patch(UUID id, AcademicProgramFilterRequest academicProgramFilterRequest);
 
     /**
      * Elimina un programa académico.
@@ -60,5 +60,5 @@ public interface AcademicProgramService {
      * @return resultado de la eliminación
      */
     public DeleteDto delete(UUID id);
-    
+
 }
