@@ -7,27 +7,26 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import cl.edu.core.mapStruct.MapStructConfig;
-import cl.edu.dto.filter.AcademicProgramStatusFilterRequest;
-import cl.edu.dto.request.AcademicProgramStatusRequest;
-import cl.edu.dto.response.AcademicProgramStatusResponse;
-import cl.edu.entity.AcademicProgramStatus;
+import cl.edu.dto.filter.RoleFilterRequest;
+import cl.edu.dto.request.RoleRequest;
+import cl.edu.dto.response.RoleResponse;
+import cl.edu.entity.Role;
 
 @Mapper(config = MapStructConfig.class)
-public interface AcademicProgramStatusMapper {
+public interface RoleMapper {
 
-    AcademicProgramStatusResponse toResponse(AcademicProgramStatus entity);
+    RoleResponse toResponse(Role entity);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "academicPrograms", ignore = true)
-    AcademicProgramStatus toEntity(AcademicProgramStatusRequest request);
+    @Mapping(target = "accesses", ignore = true)
+    Role toEntity(RoleRequest request);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "academicPrograms", ignore = true)
-    void updateEntityFromRequest(AcademicProgramStatusFilterRequest request, @MappingTarget AcademicProgramStatus entity);
-
+    @Mapping(target = "accesses", ignore = true)
+    void updateEntityFromRequest(RoleFilterRequest request, @MappingTarget Role entity);
 }

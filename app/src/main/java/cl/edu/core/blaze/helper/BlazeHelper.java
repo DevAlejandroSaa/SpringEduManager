@@ -1,4 +1,4 @@
-package cl.edu.core.blaze;
+package cl.edu.core.blaze.helper;
 
 import java.util.List;
 import java.util.function.BiConsumer;

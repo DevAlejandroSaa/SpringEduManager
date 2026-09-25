@@ -2,6 +2,7 @@ package cl.edu.core.blaze.specification;
 
 import com.blazebit.persistence.CriteriaBuilder;
 
+import cl.edu.core.blaze.helper.BlazeSpecificationHelper;
 import cl.edu.dto.AcademicProgramStatusDto;
 import cl.edu.entity.AcademicProgramStatus;
 import lombok.experimental.UtilityClass;
@@ -18,23 +19,9 @@ public class AcademicProgramStatusSpecification {
             criteriaBuilder.where("id").eq(filter.id());
         }
 
-        criteriaBuilder = applyLike(criteriaBuilder, "code", filter.code());
-        criteriaBuilder = applyLike(criteriaBuilder, "name", filter.name());
-        criteriaBuilder = applyLike(criteriaBuilder, "description", filter.description());
-    }
-
-    private boolean isValid(String value) {
-        return value != null && !value.isBlank();
-    }
-
-    private CriteriaBuilder<AcademicProgramStatus> applyLike(
-            CriteriaBuilder<AcademicProgramStatus> criteriaBuilder, String attribute, String value) {
-        return isValid(value)
-                ? criteriaBuilder.where(attribute)
-                        .like()
-                        .value("%" + value.trim() + "%")
-                        .noEscape()
-                : criteriaBuilder;
+        criteriaBuilder = BlazeSpecificationHelper.applyLike(criteriaBuilder, "code", filter.code());
+        criteriaBuilder = BlazeSpecificationHelper.applyLike(criteriaBuilder, "name", filter.name());
+        criteriaBuilder = BlazeSpecificationHelper.applyLike(criteriaBuilder, "description", filter.description());
     }
 
 }
