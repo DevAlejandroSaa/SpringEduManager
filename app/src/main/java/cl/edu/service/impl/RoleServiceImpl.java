@@ -36,16 +36,17 @@ public class RoleServiceImpl extends AbstractService implements RoleService {
 
     @Override
     public RoleResponse create(RoleRequest roleRequest) {
-        if (roleRepository.existsByCode(roleRequest.code())) {
-            throw new CustomConflictException(i18nConfig.getMessage("error.role.code_exists"));
+        if (this.roleRepository.existsByCode(roleRequest.code())) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.role.code_exists"));
         }
 
-        if (roleRepository.existsByName(roleRequest.name())) {
-            throw new CustomConflictException(i18nConfig.getMessage("error.role.name_exists"));
+        if (this.roleRepository.existsByName(roleRequest.name())) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.role.name_exists"));
         }
 
-        Role role = roleMapper.toEntity(roleRequest);
-        return roleMapper.toResponse(roleRepository.save(role));
+        Role role = this.roleMapper.toEntity(roleRequest);
+
+        return this.roleMapper.toResponse(this.roleRepository.save(role));
     }
 
     @Override
@@ -54,73 +55,73 @@ public class RoleServiceImpl extends AbstractService implements RoleService {
                 Role.class,
                 pageRequest,
                 RoleSpecification::apply,
-                roleMapper::toResponse);
+                this.roleMapper::toResponse);
     }
 
     @Override
     public RoleResponse getById(UUID id) {
         Role role = findEntityById(
-                roleRepository,
+                this.roleRepository,
                 id,
-                i18nConfig.getMessage("error.role.not_found"));
+                this.i18nConfig.getMessage("error.role.not_found"));
 
-        return roleMapper.toResponse(role);
+        return this.roleMapper.toResponse(role);
     }
 
     @Override
     public RoleResponse update(UUID id, RoleRequest roleRequest) {
         Role role = findEntityById(
-                roleRepository,
+                this.roleRepository,
                 id,
-                i18nConfig.getMessage("error.role.not_found"));
+                this.i18nConfig.getMessage("error.role.not_found"));
 
-        if (roleRepository.existsByCodeAndIdNot(roleRequest.code(), id)) {
-            throw new CustomConflictException(i18nConfig.getMessage("error.role.code_exists"));
+        if (this.roleRepository.existsByCodeAndIdNot(roleRequest.code(), id)) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.role.code_exists"));
         }
 
-        if (roleRepository.existsByNameAndIdNot(roleRequest.name(), id)) {
-            throw new CustomConflictException(i18nConfig.getMessage("error.role.name_exists"));
+        if (this.roleRepository.existsByNameAndIdNot(roleRequest.name(), id)) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.role.name_exists"));
         }
 
-        roleMapper.updateEntityFromRequest(roleRequest, role);
+        this.roleMapper.updateEntityFromRequest(roleRequest, role);
 
-        return roleMapper.toResponse(roleRepository.save(role));
+        return this.roleMapper.toResponse(this.roleRepository.save(role));
     }
 
     @Override
     public RoleResponse patch(UUID id, RoleFilterRequest roleFilterRequest) {
         Role role = findEntityById(
-                roleRepository,
+                this.roleRepository,
                 id,
-                i18nConfig.getMessage("error.role.not_found"));
+                this.i18nConfig.getMessage("error.role.not_found"));
+
+        RoleRequest roleRequest = this.roleMapper.toRequest(roleFilterRequest);
 
         if (roleFilterRequest.code() != null
-                && roleRepository.existsByCodeAndIdNot(roleFilterRequest.code(), id)) {
-            throw new CustomConflictException(i18nConfig.getMessage("error.role.code_exists"));
+                && this.roleRepository.existsByCodeAndIdNot(roleFilterRequest.code(), id)) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.role.code_exists"));
         }
 
         if (roleFilterRequest.name() != null
-                && roleRepository.existsByNameAndIdNot(roleFilterRequest.name(), id)) {
-            throw new CustomConflictException(i18nConfig.getMessage("error.role.name_exists"));
+                && this.roleRepository.existsByNameAndIdNot(roleFilterRequest.name(), id)) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.role.name_exists"));
         }
 
-        RoleRequest roleRequest = roleMapper.toRequest(roleFilterRequest);
+        this.roleMapper.updateEntityFromRequest(roleRequest, role);
 
-        roleMapper.updateEntityFromRequest(roleRequest, role);
-
-        return roleMapper.toResponse(roleRepository.save(role));
+        return this.roleMapper.toResponse(this.roleRepository.save(role));
     }
 
     @Override
     public DeleteDto delete(UUID id) {
         Role role = findEntityById(
-                roleRepository,
+                this.roleRepository,
                 id,
-                i18nConfig.getMessage("error.role.not_found"));
+                this.i18nConfig.getMessage("error.role.not_found"));
 
-        roleRepository.delete(role);
+        this.roleRepository.delete(role);
 
-        return new DeleteDto(i18nConfig.getMessage("success.role.deleted"));
+        return new DeleteDto(this.i18nConfig.getMessage("success.role.deleted"));
     }
 
 }

@@ -18,6 +18,9 @@ import cl.edu.dto.response.AccessResponse;
 import cl.edu.entity.Access;
 import cl.edu.mapper.AccessMapper;
 import cl.edu.repository.AccessRepository;
+import cl.edu.repository.AccessStatusRepository;
+import cl.edu.repository.RoleRepository;
+import cl.edu.repository.UserInformationRepository;
 import cl.edu.service.AbstractService;
 import cl.edu.service.AccessService;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +35,10 @@ public class AccessServiceImpl extends AbstractService implements AccessService 
     private final AccessMapper accessMapper;
     private final BlazeHelper blazeHelper;
     private final I18nConfig i18nConfig;
+
+    private final RoleRepository roleRepository;
+    private final UserInformationRepository userInformationRepository;
+    private final AccessStatusRepository accessStatusRepository;
 
     @Override
     public AccessResponse create(AccessRequest accessRequest) {

@@ -86,12 +86,13 @@ public class UserInformationServiceImpl extends AbstractService implements UserI
                 id,
                 i18nConfig.getMessage("error.user_information.not_found"));
 
+        UserInformationRequest userInformationRequest = userInformationMapper.toRequest(userInformationFilterRequest);
+
         if (userInformationFilterRequest.email() != null
                 && userInformationRepository.existsByEmailAndIdNot(userInformationFilterRequest.email(), id)) {
             throw new CustomConflictException(i18nConfig.getMessage("error.user_information.email_exists"));
         }
 
-        UserInformationRequest userInformationRequest = userInformationMapper.toRequest(userInformationFilterRequest);
         userInformationMapper.updateEntityFromRequest(userInformationRequest, userInformation);
 
         return userInformationMapper.toResponse(userInformationRepository.save(userInformation));

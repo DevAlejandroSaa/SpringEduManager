@@ -36,17 +36,17 @@ public class AccessStatusServiceImpl extends AbstractService implements AccessSt
 
     @Override
     public AccessStatusResponse create(AccessStatusRequest accessStatusRequest) {
-        if (accessStatusRepository.existsByCode(accessStatusRequest.code())) {
-            throw new CustomConflictException(i18nConfig.getMessage("error.access_status.code_exists"));
+        if (this.accessStatusRepository.existsByCode(accessStatusRequest.code())) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.access_status.code_exists"));
         }
 
-        if (accessStatusRepository.existsByName(accessStatusRequest.name())) {
-            throw new CustomConflictException(i18nConfig.getMessage("error.access_status.name_exists"));
+        if (this.accessStatusRepository.existsByName(accessStatusRequest.name())) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.access_status.name_exists"));
         }
 
-        AccessStatus accessStatus = accessStatusMapper.toEntity(accessStatusRequest);
+        AccessStatus accessStatus = this.accessStatusMapper.toEntity(accessStatusRequest);
 
-        return accessStatusMapper.toResponse(accessStatusRepository.save(accessStatus));
+        return this.accessStatusMapper.toResponse(this.accessStatusRepository.save(accessStatus));
     }
 
     @Override
@@ -63,9 +63,9 @@ public class AccessStatusServiceImpl extends AbstractService implements AccessSt
         AccessStatus accessStatus = findEntityById(
                 accessStatusRepository,
                 id,
-                i18nConfig.getMessage("error.access_status.not_found"));
+                this.i18nConfig.getMessage("error.access_status.not_found"));
 
-        return accessStatusMapper.toResponse(accessStatus);
+        return this.accessStatusMapper.toResponse(accessStatus);
     }
 
     @Override
@@ -73,19 +73,19 @@ public class AccessStatusServiceImpl extends AbstractService implements AccessSt
         AccessStatus accessStatus = findEntityById(
                 accessStatusRepository,
                 id,
-                i18nConfig.getMessage("error.access_status.not_found"));
+                this.i18nConfig.getMessage("error.access_status.not_found"));
 
-        if (accessStatusRepository.existsByCodeAndIdNot(accessStatusRequest.code(), id)) {
-            throw new CustomConflictException(i18nConfig.getMessage("error.access_status.code_exists"));
+        if (this.accessStatusRepository.existsByCodeAndIdNot(accessStatusRequest.code(), id)) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.access_status.code_exists"));
         }
 
-        if (accessStatusRepository.existsByNameAndIdNot(accessStatusRequest.name(), id)) {
-            throw new CustomConflictException(i18nConfig.getMessage("error.access_status.name_exists"));
+        if (this.accessStatusRepository.existsByNameAndIdNot(accessStatusRequest.name(), id)) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.access_status.name_exists"));
         }
 
-        accessStatusMapper.updateEntityFromRequest(accessStatusRequest, accessStatus);
+        this.accessStatusMapper.updateEntityFromRequest(accessStatusRequest, accessStatus);
 
-        return accessStatusMapper.toResponse(accessStatusRepository.save(accessStatus));
+        return this.accessStatusMapper.toResponse(this.accessStatusRepository.save(accessStatus));
     }
 
     @Override
@@ -93,23 +93,21 @@ public class AccessStatusServiceImpl extends AbstractService implements AccessSt
         AccessStatus accessStatus = findEntityById(
                 accessStatusRepository,
                 id,
-                i18nConfig.getMessage("error.access_status.not_found"));
+                this.i18nConfig.getMessage("error.access_status.not_found"));
 
-        if (accessStatusFilterRequest.code() != null
-                && accessStatusRepository.existsByCodeAndIdNot(accessStatusFilterRequest.code(), id)) {
-            throw new CustomConflictException(i18nConfig.getMessage("error.access_status.code_exists"));
+        AccessStatusRequest accessStatusRequest = this.accessStatusMapper.toRequest(accessStatusFilterRequest);
+
+        if (accessStatusRequest.code() != null && this.accessStatusRepository.existsByCodeAndIdNot(accessStatusRequest.code(), id)) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.access_status.code_exists"));
         }
 
-        if (accessStatusFilterRequest.name() != null
-                && accessStatusRepository.existsByNameAndIdNot(accessStatusFilterRequest.name(), id)) {
-            throw new CustomConflictException(i18nConfig.getMessage("error.access_status.name_exists"));
+        if (accessStatusRequest.name() != null && this.accessStatusRepository.existsByNameAndIdNot(accessStatusRequest.name(), id)) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.access_status.name_exists"));
         }
 
-        AccessStatusRequest accessStatusRequest = accessStatusMapper.toRequest(accessStatusFilterRequest);
+        this.accessStatusMapper.updateEntityFromRequest(accessStatusRequest, accessStatus);
 
-        accessStatusMapper.updateEntityFromRequest(accessStatusRequest, accessStatus);
-
-        return accessStatusMapper.toResponse(accessStatusRepository.save(accessStatus));
+        return this.accessStatusMapper.toResponse(this.accessStatusRepository.save(accessStatus));
     }
 
     @Override
@@ -117,11 +115,11 @@ public class AccessStatusServiceImpl extends AbstractService implements AccessSt
         AccessStatus accessStatus = findEntityById(
                 accessStatusRepository,
                 id,
-                i18nConfig.getMessage("error.access_status.not_found"));
+                this.i18nConfig.getMessage("error.access_status.not_found"));
 
-        accessStatusRepository.delete(accessStatus);
+        this.accessStatusRepository.delete(accessStatus);
 
-        return new DeleteDto(i18nConfig.getMessage("success.access_status.deleted"));
+        return new DeleteDto(this.i18nConfig.getMessage("success.access_status.deleted"));
     }
 
 }

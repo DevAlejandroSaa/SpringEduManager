@@ -8,7 +8,6 @@ import lombok.experimental.UtilityClass;
 public class BlazeSpecificationHelper {
 
     public <T> CriteriaBuilder<T> applyLike(CriteriaBuilder<T> criteriaBuilder, String attribute, String value) {
-
         return isValid(value)
                 ? criteriaBuilder
                         .where(attribute)

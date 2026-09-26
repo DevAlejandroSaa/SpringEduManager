@@ -8,4 +8,8 @@ import cl.edu.entity.GradeRule;
 
 public interface GradeRuleRepository extends JpaRepository<GradeRule, UUID> {
 
+    boolean existsByGrade(Short grade);
+
+    boolean existsByGradeAndIdNot(Short grade, UUID id);
+
 }

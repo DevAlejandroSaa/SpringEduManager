@@ -22,5 +22,5 @@ public record AccessRequest(
     String password,
 
     @NotNull(message = "{valid.access.required}")
-    UUID statusId
+    UUID accessStatusId
 ) {}
