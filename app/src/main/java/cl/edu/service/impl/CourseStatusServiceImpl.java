@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cl.edu.core.blaze.helper.BlazeHelper;
+import cl.edu.core.blaze.specification.CourseStatusSpecification;
+import cl.edu.core.exception.custom.CustomConflictException;
 import cl.edu.core.i18n.I18nConfig;
 import cl.edu.dto.DeleteDto;
 import cl.edu.dto.filter.CourseStatusFilterRequest;
@@ -14,8 +16,9 @@ import cl.edu.dto.pagination.PageRequest;
 import cl.edu.dto.pagination.PageResponse;
 import cl.edu.dto.request.CourseStatusRequest;
 import cl.edu.dto.response.CourseStatusResponse;
-import cl.edu.mapper.CourseMapper;
-import cl.edu.repository.CourseRepository;
+import cl.edu.entity.CourseStatus;
+import cl.edu.mapper.CourseStatusMapper;
+import cl.edu.repository.CourseStatusRepository;
 import cl.edu.service.AbstractService;
 import cl.edu.service.CourseStatusService;
 import lombok.RequiredArgsConstructor;
@@ -26,45 +29,82 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class CourseStatusServiceImpl extends AbstractService implements CourseStatusService {
 
-    private final CourseRepository courseRepository;
-    private final CourseMapper courseMapper;
+    private final CourseStatusRepository courseStatusRepository;
+    private final CourseStatusMapper courseStatusMapper;
     private final BlazeHelper blazeHelper;
     private final I18nConfig i18nConfig;
 
     @Override
     public CourseStatusResponse create(CourseStatusRequest courseStatusRequest) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        if (this.courseStatusRepository.existsByCode(courseStatusRequest.code())) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.course_status.code_exists"));
+        }
+        if (this.courseStatusRepository.existsByName(courseStatusRequest.name())) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.course_status.name_exists"));
+        }
+        CourseStatus courseStatus = this.courseStatusMapper.toEntity(courseStatusRequest);
+        return this.courseStatusMapper.toResponse(this.courseStatusRepository.save(courseStatus));
     }
 
     @Override
     public PageResponse<CourseStatusResponse> filter(PageRequest<CourseStatusFilterRequest> pageRequest) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'filter'");
+        return this.blazeHelper.findAllPaged(
+                CourseStatus.class,
+                pageRequest,
+                CourseStatusSpecification::apply,
+                this.courseStatusMapper::toResponse);
     }
 
     @Override
     public CourseStatusResponse getById(UUID id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+        CourseStatus courseStatus = findEntityById(
+                this.courseStatusRepository,
+                id,
+                this.i18nConfig.getMessage("error.course_status.not_found"));
+        return this.courseStatusMapper.toResponse(courseStatus);
     }
 
     @Override
     public CourseStatusResponse update(UUID id, CourseStatusRequest courseStatusRequest) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        CourseStatus courseStatus = findEntityById(
+                this.courseStatusRepository,
+                id,
+                this.i18nConfig.getMessage("error.course_status.not_found"));
+        if (this.courseStatusRepository.existsByCodeAndIdNot(courseStatusRequest.code(), id)) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.course_status.code_exists"));
+        }
+        if (this.courseStatusRepository.existsByNameAndIdNot(courseStatusRequest.name(), id)) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.course_status.name_exists"));
+        }
+        this.courseStatusMapper.updateEntityFromRequest(courseStatusRequest, courseStatus);
+        return this.courseStatusMapper.toResponse(this.courseStatusRepository.save(courseStatus));
     }
 
     @Override
     public CourseStatusResponse patch(UUID id, CourseStatusFilterRequest courseStatusFilterRequest) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'patch'");
+        CourseStatus courseStatus = findEntityById(
+                this.courseStatusRepository,
+                id,
+                this.i18nConfig.getMessage("error.course_status.not_found"));
+        CourseStatusRequest courseStatusRequest = this.courseStatusMapper.toRequest(courseStatusFilterRequest);
+        if (courseStatusRequest.code() != null && this.courseStatusRepository.existsByCodeAndIdNot(courseStatusRequest.code(), id)) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.course_status.code_exists"));
+        }
+        if (courseStatusRequest.name() != null && this.courseStatusRepository.existsByNameAndIdNot(courseStatusRequest.name(), id)) {
+            throw new CustomConflictException(this.i18nConfig.getMessage("error.course_status.name_exists"));
+        }
+        this.courseStatusMapper.updateEntityFromRequest(courseStatusRequest, courseStatus);
+        return this.courseStatusMapper.toResponse(this.courseStatusRepository.save(courseStatus));
     }
 
     @Override
     public DeleteDto delete(UUID id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        CourseStatus courseStatus = findEntityById(
+                this.courseStatusRepository,
+                id,
+                this.i18nConfig.getMessage("error.course_status.not_found"));
+        this.courseStatusRepository.delete(courseStatus);
+        return new DeleteDto(this.i18nConfig.getMessage("success.course_status.deleted"));
     }
 
 }

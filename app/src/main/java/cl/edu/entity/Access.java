@@ -60,7 +60,7 @@ public class Access {
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "status_id", nullable = false)
-    private AccessStatus status;
+    private AccessStatus accessStatus;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
